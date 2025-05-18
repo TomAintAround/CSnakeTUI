@@ -3,8 +3,8 @@
 !*.*
 !*/
 
-# VSCode
 .vscode/
+build/
 
 # Prerequisites
 *.d
