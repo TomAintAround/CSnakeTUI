@@ -6,7 +6,7 @@ void initSnake(snakePart_t** snake) {
 	*snake = NULL;
 }
 
-void insertPart(snakePart_t** snake, int x, int y) {
+void insertPart(snakePart_t** snake, const int x, const int y) {
 	snakePart_t* part = (snakePart_t*)malloc(sizeof(snakePart_t));
 	if (part == NULL) {
 		error("A snake part wasn't successfully allocated. This is a rare "
