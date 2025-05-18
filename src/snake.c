@@ -31,6 +31,7 @@ void moveSnake(snakePart_t** snake, int dx, int dy) {
 		part->y += dy;
 		dx = nextDX;
 		dy = nextDY;
+		part = part->next;
 	}
 }
 
