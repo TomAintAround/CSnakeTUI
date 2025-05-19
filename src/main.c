@@ -43,15 +43,6 @@ int main() {
 			continue;
 		}
 
-		snakePart_t* part = snake;
-		move(initY, initX - 10);
-		while (part != NULL) {
-			printw("%d,%d ", part->x, part->y);
-			part = part->next;
-		}
-		printw("\n");
-		part = snake;
-
 		moveSnake(&snake, dx, dy);
 		drawMap(&snake, rows, cols);
 		elapsedTime = clock();
