@@ -38,4 +38,11 @@ void moveSnake(snakePart_t** snake, int dx, int dy);
  */
 void cleanSnake(snakePart_t** snake);
 
+/**
+ * @brief Checks if the game is lost (snake leaves the boundaries).
+ *
+ * @param[in] snake The pointer to the head of the snake (top of the stack).
+ */
+bool gameLost(snakePart_t** snake);
+
 #endif

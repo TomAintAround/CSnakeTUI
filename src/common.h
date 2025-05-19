@@ -25,4 +25,12 @@ void error(const char* errorMessage);
  */
 bool close(const double number1, const double number2);
 
+/**
+ * @brief Checks for user input and and change direction of the snake.
+ *
+ * @param[inout] dx Pointer of the difference in the x axis.
+ * @param[inout] dy Pointer of the difference in the y axis.
+ */
+void translateInput(int* dx, int* dy);
+
 #endif

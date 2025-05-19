@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdbool.h>
 #include "snake.h"
 #include "common.h"
 
@@ -42,4 +43,10 @@ void cleanSnake(snakePart_t** snake) {
 		free(part);
 	}
 	initSnake(snake);
+}
+
+bool gameLost(snakePart_t** snake) {
+	if ((*snake)->x < 0 || (*snake)->x > LIMIT_X) return true;
+	if ((*snake)->y < 0 || (*snake)->y > LIMIT_Y) return true;
+	return false;
 }
