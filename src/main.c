@@ -9,8 +9,16 @@
 int main() {
 	setlocale(LC_ALL, "");
 	initscr();
+	if (has_colors() == FALSE) {
+		endwin();
+		error("Your terminal doesn't support colors.\n");
+	}
 	curs_set(0);
 	noecho();
+	start_color();
+	init_pair(1, COLOR_WHITE, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLACK);
 	keypad(stdscr, TRUE);
 	timeout(0);
 	nodelay(stdscr, TRUE);
@@ -24,7 +32,7 @@ int main() {
 	for (int i = INIT_NUM - 1; i >= 0; i--) {
 		insertPart(&snake, initX - i, initY);
 	}
-	drawMap(rows, cols);
+	drawMap(&snake, rows, cols);
 
 	double frameDuration = MEDIUM_MODE;
 	clock_t elapsedTime = clock();
@@ -45,13 +53,17 @@ int main() {
 		part = snake;
 
 		moveSnake(&snake, dx, dy);
-		drawMap(rows, cols);
+		drawMap(&snake, rows, cols);
 		elapsedTime = clock();
 	}
+	cleanSnake(&snake);
+	drawMap(&snake, rows, cols);
 	nodelay(stdscr, FALSE);
-	move(initY, initX - 10);
+	move(initY, initX - 6);
+	attron(COLOR_PAIR(3));
 	addstr("Game Over\n");
-	drawMap(rows, cols);
+	attroff(COLOR_PAIR(3));
+	drawBorders(rows, cols);
 	getch();
 
 	endwin();
