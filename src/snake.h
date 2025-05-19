@@ -45,6 +45,6 @@ void cleanSnake(snakePart_t** snake);
  * @param[in] maxRow The last row.
  * @param[in] maxCol The last column.
  */
-bool gameLost(snakePart_t** snake, const int maxRow, const int maxCol);
+bool gameLost(snakePart_t** snake, const int rows, const int cols);
 
 #endif
