@@ -17,6 +17,7 @@
 				packages = with pkgs; [
 					gccgo14
 					gdb
+					ncurses
 					valgrind
 				];
 			};
