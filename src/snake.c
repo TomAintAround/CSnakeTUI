@@ -37,8 +37,8 @@ void moveSnake(snakePart_t** snake, int dx, int dy) {
 }
 
 void cleanSnake(snakePart_t** snake) {
-	snakePart_t* part = *snake;
-	while (part != NULL) {
+	while (*snake != NULL) {
+		snakePart_t* part = *snake;
 		*snake = part->next;
 		free(part);
 	}
