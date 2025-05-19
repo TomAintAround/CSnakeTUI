@@ -1,11 +1,15 @@
 #include <stdbool.h>
 #include <time.h>
 #include <ncurses.h>
+#include <locale.h>
 #include "snake.h"
 #include "common.h"
+#include "ui.h"
 
 int main() {
+	setlocale(LC_ALL, "");
 	initscr();
+	curs_set(0);
 	noecho();
 	keypad(stdscr, TRUE);
 	timeout(0);
@@ -20,8 +24,9 @@ int main() {
 	for (int i = INIT_NUM - 1; i >= 0; i--) {
 		insertPart(&snake, initX - i, initY);
 	}
+	drawMap(rows, cols);
 
-	double frameDuration = HARD_MODE;
+	double frameDuration = MEDIUM_MODE;
 	clock_t elapsedTime = clock();
 	int dx = 1, dy = 0;
 	while (!gameLost(&snake, rows - 1, cols - 1)) {
@@ -40,12 +45,13 @@ int main() {
 		part = snake;
 
 		moveSnake(&snake, dx, dy);
-		refresh();
+		drawMap(rows, cols);
 		elapsedTime = clock();
 	}
 	nodelay(stdscr, FALSE);
 	move(initY, initX - 10);
-	printw("Game Over\n");
+	addstr("Game Over\n");
+	drawMap(rows, cols);
 	getch();
 
 	endwin();
