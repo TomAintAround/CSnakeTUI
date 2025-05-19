@@ -44,6 +44,7 @@ void cleanSnake(snakePart_t** snake);
  * @param[in] snake The pointer to the head of the snake (top of the stack).
  * @param[in] maxRow The last row.
  * @param[in] maxCol The last column.
+ * @return Whether the coordenate has a snake part.
  */
 bool gameLost(snakePart_t** snake, const int rows, const int cols);
 

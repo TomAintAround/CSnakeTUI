@@ -20,6 +20,7 @@ void error(const char* errorMessage);
  *
  * @param[in] number1 The first number.
  * @param[in] number1 The second number.
+ * @return Whether the numbers are approximately the same.
  */
 bool close(const double number1, const double number2);
 
