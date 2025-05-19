@@ -4,9 +4,9 @@
 #define LIMIT_X 100
 #define LIMIT_Y 100
 #define INIT_NUM 3
-#define EASY_MODE 0.2
-#define MEDIUM_MODE 0.05
-#define HARD_MODE 0.02
+#define EASY_MODE 0.4
+#define MEDIUM_MODE 0.2
+#define HARD_MODE 0.075
 #define PI 3.14159265358979323846
 
 /**
