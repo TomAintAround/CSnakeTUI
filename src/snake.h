@@ -20,7 +20,7 @@ void initSnake(snakePart_t** snake);
  * @param[in] x The abscissa of the new head.
  * @param[in] y The ordinate of the new head.
  */
-void insertPart(snakePart_t** snake, int x, int y);
+void insertPart(snakePart_t** snake, const int x, const int y);
 
 /**
  * @brief Moves the snake according to the input.
