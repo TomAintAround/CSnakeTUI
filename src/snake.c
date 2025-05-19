@@ -45,8 +45,15 @@ void cleanSnake(snakePart_t** snake) {
 	initSnake(snake);
 }
 
-bool gameLost(snakePart_t** snake) {
-	if ((*snake)->x < 0 || (*snake)->x > LIMIT_X) return true;
-	if ((*snake)->y < 0 || (*snake)->y > LIMIT_Y) return true;
+bool gameLost(snakePart_t** snake, const int maxRow, const int maxCol) {
+	if ((*snake)->y < 1 || (*snake)->y > maxRow - 1) return true;
+	if ((*snake)->x < 1 || (*snake)->x > maxCol - 1) return true;
+
+	snakePart_t* part = (*snake)->next;
+	while (part != NULL) {
+		if ((*snake)->x == part->x && (*snake)->y == part->y) return true;
+		part = part->next;
+	}
+
 	return false;
 }

@@ -42,7 +42,9 @@ void cleanSnake(snakePart_t** snake);
  * @brief Checks if the game is lost (snake leaves the boundaries).
  *
  * @param[in] snake The pointer to the head of the snake (top of the stack).
+ * @param[in] maxRow The last row.
+ * @param[in] maxCol The last column.
  */
-bool gameLost(snakePart_t** snake);
+bool gameLost(snakePart_t** snake, const int maxRow, const int maxCol);
 
 #endif
