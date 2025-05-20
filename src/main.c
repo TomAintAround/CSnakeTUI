@@ -94,7 +94,6 @@ int main() {
 		drawMap(&snake, &apple, rows, cols);
 		elapsedTime = clock();
 	}
-	cleanSnake(&snake);
 	drawMap(&snake, &apple, rows, cols);
 	nodelay(stdscr, FALSE);
 	move(initY, initX - 6);
@@ -104,6 +103,7 @@ int main() {
 	drawBorders(rows, cols);
 	getch();
 
+	cleanSnake(&snake);
 	endwin();
 	return 0;
 }
