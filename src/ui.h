@@ -1,6 +1,7 @@
 #ifndef UI_H
 #define UI_H
 
+#include "main.h"
 #include "snake.h"
 
 /**
@@ -28,7 +29,7 @@ bool isSnake(snakePart_t** snake, int row, int col);
  * @param[in] rows The number of existing rows.
  * @param[in] cols The number of existing columns.
  */
-void drawSnake(snakePart_t** snake, const int rows, const int cols);
+void drawElements(snakePart_t** snake, apple_t* apple, const int rows, const int cols);
 
 /**
  * @brief Draws the snake and the borders.
@@ -37,6 +38,6 @@ void drawSnake(snakePart_t** snake, const int rows, const int cols);
  * @param[in] rows The number of existing rows.
  * @param[in] cols The number of existing columns.
  */
-void drawMap(snakePart_t** snake, const int rows, const int cols);
+void drawMap(snakePart_t** snake, apple_t* apple, const int rows, const int cols);
 
 #endif

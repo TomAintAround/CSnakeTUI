@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <stdbool.h>
+#include "main.h"
 #include "snake.h"
 
 void drawBorders(const int rows, const int cols) {
@@ -28,13 +29,17 @@ bool isSnake(snakePart_t** snake, int row, int col) {
 	return false;
 }
 
-void drawSnake(snakePart_t** snake, const int rows, const int cols) {
+void drawElements(snakePart_t** snake, apple_t* apple, const int rows, const int cols) {
 	for (int row = 1; row < rows - 1; row++) {
 		for (int col = 1; col < cols - 1; col++) {
 			if (isSnake(snake, row, col)) {
 				attron(COLOR_PAIR(2));
 				mvprintw(row, col, "█");
 				attroff(COLOR_PAIR(2));
+			} else if (apple->y == row && apple->x == col) {
+				attron(COLOR_PAIR(3));
+				mvprintw(row, col, "█");
+				attroff(COLOR_PAIR(3));
 			} else {
 				attron(COLOR_PAIR(1));
 				mvprintw(row, col, " ");
@@ -44,7 +49,7 @@ void drawSnake(snakePart_t** snake, const int rows, const int cols) {
 	}
 }
 
-void drawMap(snakePart_t** snake, const int rows, const int cols) {
-	drawSnake(snake, rows, cols);
+void drawMap(snakePart_t** snake, apple_t* apple, const int rows, const int cols) {
+	drawElements(snake, apple, rows, cols);
 	drawBorders(rows, cols);
 }

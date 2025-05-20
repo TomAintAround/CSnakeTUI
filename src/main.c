@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdlib.h>
 #include <time.h>
 #include <ncurses.h>
 #include <locale.h>
@@ -34,6 +35,22 @@ void translateInput(int* dx, int* dy) {
 		*dy = sin(angle);
 	}
 }
+
+void placeApple(snakePart_t** snake, apple_t* apple, const int rows, const int cols) {
+	srand(time(NULL));
+	apple->x = rand() % (cols - 2) + 1;
+	apple->y = rand() % (rows - 2) + 1;
+
+	snakePart_t* part = *snake;
+	while (part != NULL) {
+		if (part->x == apple->x && part->y == apple->y) {
+			placeApple(snake, apple, rows, cols);
+			return;
+		}
+		part = part->next;
+	}
+}
+
 int main() {
 	setlocale(LC_ALL, "");
 	initscr();
@@ -60,7 +77,9 @@ int main() {
 	for (int i = INIT_NUM - 1; i >= 0; i--) {
 		insertPart(&snake, initX - i, initY);
 	}
-	drawMap(&snake, rows, cols);
+	apple_t apple;
+	placeApple(&snake, &apple, rows, cols);
+	drawMap(&snake, &apple, rows, cols);
 
 	double frameDuration = MEDIUM_MODE;
 	clock_t elapsedTime = clock();
@@ -72,11 +91,11 @@ int main() {
 		}
 
 		moveSnake(&snake, dx, dy);
-		drawMap(&snake, rows, cols);
+		drawMap(&snake, &apple, rows, cols);
 		elapsedTime = clock();
 	}
 	cleanSnake(&snake);
-	drawMap(&snake, rows, cols);
+	drawMap(&snake, &apple, rows, cols);
 	nodelay(stdscr, FALSE);
 	move(initY, initX - 6);
 	attron(COLOR_PAIR(3));
