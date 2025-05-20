@@ -6,6 +6,10 @@
 .vscode/
 build/
 
+# Direnv
+.envrc
+.direnv/
+
 # Prerequisites
 *.d
 
