@@ -81,7 +81,7 @@ int main() {
 	placeApple(&snake, &apple, rows, cols);
 	drawMap(&snake, &apple, rows, cols);
 
-	double frameDuration = MEDIUM_MODE;
+	double frameDuration = HARD_MODE;
 	clock_t elapsedTime = clock();
 	int dx = 1, dy = 0;
 	while (!gameLost(&snake, rows - 1, cols - 1)) {
@@ -90,7 +90,12 @@ int main() {
 			continue;
 		}
 
-		moveSnake(&snake, dx, dy);
+		if (snake->x + dx == apple.x && snake->y + dy == apple.y) {
+			insertPart(&snake, snake->x + dx, snake->y + dy);
+			placeApple(&snake, &apple, rows, cols);
+		} else {
+			moveSnake(&snake, dx, dy);
+		}
 		drawMap(&snake, &apple, rows, cols);
 		elapsedTime = clock();
 	}
