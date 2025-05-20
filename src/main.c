@@ -14,7 +14,7 @@ bool close(const double number1, const double number2) {
 	return false;
 }
 
-void translateInput(int* dx, int* dy) {
+void translateInput(int* dx, int* dy, int prevDX, int prevDY) {
 	double angles[4] = { -PI / 2, -PI, PI / 2, 0 };
 	double angle = angles[0];
 	int key = getch();
@@ -30,7 +30,7 @@ void translateInput(int* dx, int* dy) {
 	}
 
 	// To avoid 180º turns
-	if (!close(*dx, -cos(angle)) || !close(*dy, -sin(angle))) {
+	if (!close(prevDX, -cos(angle)) || !close(prevDY, -sin(angle))) {
 		*dx = cos(angle);
 		*dy = sin(angle);
 	}
@@ -83,13 +83,15 @@ int main() {
 
 	double frameDuration = HARD_MODE;
 	clock_t elapsedTime = clock();
-	int dx = 1, dy = 0;
+	int dx = 1, dy = 0, prevDX = dx, prevDY = dy;
 	while (!gameLost(&snake, rows - 1, cols - 1)) {
-		translateInput(&dx, &dy);
+		translateInput(&dx, &dy, prevDX, prevDY);
 		if ((double)(clock() - elapsedTime) / CLOCKS_PER_SEC < frameDuration) {
 			continue;
 		}
 
+		prevDX = dx;
+		prevDY = dy;
 		if (snake->x + dx == apple.x && snake->y + dy == apple.y) {
 			insertPart(&snake, snake->x + dx, snake->y + dy);
 			placeApple(&snake, &apple, rows, cols);

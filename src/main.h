@@ -26,10 +26,12 @@ bool close(const double number1, const double number2);
 /**
  * @brief Checks for user input and and change direction of the snake.
  *
- * @param[inout] dx Pointer of the difference in the x axis.
- * @param[inout] dy Pointer of the difference in the y axis.
+ * @param[out] dx Pointer of the difference in the x axis.
+ * @param[out] dy Pointer of the difference in the y axis.
+ * @param[in] prevDX Previous difference of the x axis.
+ * @param[in] prevDY Previous difference of the y axis.
  */
-void translateInput(int* dx, int* dy);
+void translateInput(int* dx, int* dy, int prevDX, int prevDY);
 
 /**
  * @brief Checks for user input and and change direction of the snake.
